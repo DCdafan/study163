@@ -1,0 +1,77 @@
+// 包装函数
+module.exports=function  (grunt) {
+	//任务配置，所有插件的配置信息
+	grunt.initConfig({
+
+		//获取 package.json 的信息
+		pkg:grunt.file.readJSON('package.json'),
+
+		//uglify插件的配置信息
+		uglify:{
+			options:{
+				stripBanners:true,
+				banner:'/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyy-mm-dd")%> */\n'
+			},
+			build:{
+				src:'index.js',
+				dest:'build/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
+			}
+		},
+	//"options"中规定允许生成的压缩文件带banner，
+	//即在生成的压缩文件第一行加一句话说明。注意，其中使用到了pkg获取package.json的内容
+	//"build"中配置了源文件和目标文件。即规定了要压缩谁？压缩之后会生成谁？
+	//注意，我们这里将目标文件的文件名通过PKG的name和version来命名。
+
+	//jshint插件的配置信息(JS语法检查)
+	jshint:{
+		build:['Gruntfile.js','*.js'],
+		options:{
+			jshintrc:'.jshintrc'
+		}
+	},
+	//csslint 插件的配置信息
+
+	//
+	connect: {
+			options: {
+				port: 9000,
+				hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
+				livereload: 35729  //声明给 watch 监听的端口
+			},
+			server: {
+				options: {
+					open: true, //自动打开网页 http://
+					base: ['E:\bigWork'] //主目录
+				}
+			}
+		},
+	//watch插件的配置信息
+	watch:{
+		// build:{
+		// 	files:['*.js','*.css','*.html'],
+		// 	tasks:['jshint','uglify'],
+		// 	options:{ spawn:false}
+		// }
+		livereload: {
+			options: {
+					livereload: '<%=connect.options.livereload%>'  //监听前面声明的端口  35729
+				},
+
+				files: [  //下面文件的改变就会实时刷新网页
+				'*.html','*.css','*.js','*.{png,jpg}'
+				]
+			}
+		},
+
+
+	});
+	// 告诉grunt我们将使用插件
+	//
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	//告诉grunt当我们在终端输入grunt时需要做些什么（注意先后顺序）
+	// grunt.registerTask('default',['jshint','uglify','watch']);	
+	grunt.registerTask('serve', ['connect:server','watch']);
+};
