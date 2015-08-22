@@ -97,7 +97,7 @@ body{
 	left:267px;
 	/*text-align: center;*/
 	padding-bottom: 5px;
-	padding-left: 8xp;
+	padding-left: 8px;
 	padding-right: 8px;
 	color: #333;
 }
@@ -644,14 +644,33 @@ body{
 	position:fixed;
 	top:50%;
 	left:50%;
-	width:892px;
-	height:678px;
+/*	width:892px;
+	height:678px;*/
 	z-index:999;
 	background-color: #fff;
 	transform:translate(-50%,-50%);
-	padding: 30px;
 	font-size: 18px;
 }
+@media screen and (min-width:1205px){
+		video{
+		width:891px;
+		height:571px;
+	}
+	#video{
+	padding: 30px;
+	}
+}
+
+@media screen and (max-width:1205px){
+		video{
+		width:700px;
+		height:448px;
+	}
+	#video{
+	padding: 15px;
+	}
+}
+
 #video h3{
 	font-weight: bold;
 	margin-bottom: 20px;

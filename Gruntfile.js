@@ -16,7 +16,7 @@ module.exports = function(grunt){
 				options: {
 					open: true, //自动打开网页 http://
 					base: [
-						'E:/bigWork/'  //主目录
+						'E:/bigWork/study163/'  //主目录
 					]
 				}
 			}
