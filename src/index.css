@@ -1,11 +1,25 @@
+﻿
+@media screen and (min-width:1205px){
+	body{
+	/*min-width: 1616px;*/
+	width: 100%;
 
-body{
-	min-width: 1616px;
-	max-width: 100%;
 	font-family: 'Microsoft YaHei';
 
 	background-color: #fff;
+	}
 }
+@media screen and (max-width:1205px){
+	body{
+	width: 1205px;
+	/*width: 100%;*/
+
+	font-family: 'Microsoft YaHei';
+
+	background-color: #fff;
+	}
+}
+
 .clearfix:after{
 	content:'.';display: block;clear: both;height: 0;overflow: hidden;visibility: hidden;
 }
@@ -28,7 +42,7 @@ body{
 
 .mainColor{
 	background-color: #f8f8f8;
-	width: 100%;
+	/*width: 100%;*/
 }
 /*页面顶部提醒*/
 .top_tip{
@@ -142,35 +156,66 @@ body{
 	width: 20px;
 	height: 20px;
 	background-image:url(../image/sousuo.png);
+	cursor: pointer;
 }
 .head_sousuo:hover{
 	background-image:url(../image/sousuo01.png);
 }
 /*导航栏结束*/
 /*轮播图*/
-.m-slide{
+.m_slide{
 	
-	height: 460px;
-	position: absolute;
-	transform:translateX(-205.5px);
-	top: 88px;
+	/*height: 460px;*/
+	/*width: 1616px;*/
+	position: relative;
+	margin: 0 auto;
+	/*transform:translateX(-205.5px);*/
+	text-align: center;
 }
 
 
 
 /*轮播图滑动按钮样式*/
-.u-slidepg{
-	position: absolute;
-	width: 100%;
-	text-align: center;
-	bottom: 20px;
-	z-index: 20;
-}
+
 
 .u-slidepg ul li.js-selected {
     cursor: default;
     background: #333;
 }
+@media screen and (min-width:1205px){
+	#j_side img{
+		width: 100%;
+		height: 460px;
+		position: relative;
+		/*left: -205.5px;*/
+	}
+	.u-slidepg{
+		position: relative;
+		width: 100%;
+		text-align: center;
+		bottom: 20px;
+		z-index: 20;
+		/*left: -205.5px;*/
+	}
+}
+@media screen and (max-width:1205px){
+	#j_side img{
+		width: 1205px;
+		height: 343px;
+		position: relative;
+		/*left: -117.5px;*/
+	}
+	.u-slidepg{
+		position: relative;
+		width: 100%;
+		text-align: center;
+		bottom: 20px;
+		z-index: 20;
+		/*left: -117.5px;*/
+	}
+}
+
+
 
 .u-slidepg ul li {
 	display: inline-block;
@@ -184,68 +229,98 @@ body{
 }
 /*轮播图滑动按钮样式结束*/
 /*三大类简介*/
-.g-flow{
-	width: 100%;
-	height: 298px;
-	margin-top: 460px;
+@media screen and (min-width:1205px){
+		.g_flow{
+		width: 100%;
+		height: 298px;
+		/*margin-top: 460px;*/
+	}
 }
 
-		.g-flow-con{
-			width: 100%;
-			height: 298px;
-		}
+@media screen and (max-width:1205px){
+		.g_flow{
+		width: 100%;
+		height: 298px;
+		/*margin-top:360px ;*/
+	}
+}
 
-.g-flow-column{
+.g_flow_con{
+	width: 100%;
+	height: 298px;
+}
+
+.g_flow_column{
 	float: left;
 	width:33.33%;
 	margin-top: 62px;
 	height: 174px;
 	line-height: 24px;
 }
-.g-flow-column img{
+.g_flow_column img{
 	float: left;
 	margin-right: 20px;
 	margin-top: 6px;
 }
-.g-flow-column h3{
+.g_flow_column h3{
 	font-size: 22px;
 	margin-bottom: 20px;
 }
 @media screen and (min-width:1205px){
-	.g-flow-column p{
+	.g_flow_column p{
 		font-size: 14px;
 		width: 250px;
 		margin-left: 100px;
 		}
 }
 @media screen and (max-width:1205px){
-	.g-flow-column p{
+	.g_flow_column p{
 		font-size: 14px;
 		width: 180px;
 		margin-left: 100px;
 		}
 }
-.g-flow-column a{
+.g_flow_column a{
 	margin-top: 33px;
 	display: block;
 	color: #39a030;
 }
-.g-flow-column a:hover{
+.g_flow_column a:hover{
 	text-decoration: underline;
 }
 /*三大类简介结束*/
 
 
 
-.mid_pic{
-	background-color: #f8f8f8;
-	height: 307px;
-	width: 1620px;
-	transform:translateX(-207.5px);
-	/*overflow: hidden;*/
+/*@media screen and (min-width:1205px){
+		.mid_pic{
+		background-color: #f8f8f8;
+		height: 307px;
+		width:100%;
+		margin: 0 auto;
+		
+	}
 }
+
+@media screen and (max-width:1205px){
+		.mid_pic{
+		background-color: #f8f8f8;
+		height: 307px;
+		width: 1205px;
+		margin-left: -300px;
+		
+	}
+}
+*/
+.mid_pic{
+		background-color: #f8f8f8;
+		height: 307px;
+		width: 100%;
+		
+	}
+
 .mid_pic ul {
-	height: 223px;
+	height: 221px;
 	text-align: center;
 	overflow: hidden;
 }
@@ -310,7 +385,13 @@ body{
 		width: 730px;
 	}
 }
-
+.contents_ul_li:hover p{
+	color: #39a030;
+}
+.contents_ul_li:hover{
+	border:1px solid #c1c0c0;
+	box-shadow: 1px 1px 3px #c1c0c0,-1px -1px 3px #c1c0c0; 
+}
 .contents_ul li{
 	display: inline-block;
 	margin-right: 18px;
@@ -328,13 +409,14 @@ body{
 .contents_ul_float{
 	position: absolute;
 	width: 482px;
-	height: 240px;
+	height: 217px;
 	background-color: #fff;
 	top: -11px;
 	left: -11px;
 	padding: 11px;
 	z-index: 50;
-	box-shadow:2px 2px 3px #c1c0c0;
+	border:1px solid #c1c0c0;
+	box-shadow: 1px 1px 3px #c1c0c0,-1px -1px 3px #c1c0c0; 
 }
 .contents_ul_float img{
 	float: left;
@@ -469,6 +551,7 @@ body{
 	margin-left: 23px;
 	
 }
+
 .contents_right_hotlist li p{
 	    font-size: 14px ;
         font-weight: bold;
@@ -700,38 +783,40 @@ input::input-placeholder{
 input::-moz-input-placeholder{
 	color: #ccc;
 }
-.ui-dialog-title{
+.ui_dialog_title{
 	font-size: 18px;
 	margin-top: 30px;
 	margin-left: 40px;
 	font-weight: bold;
 }
-#login-close{
+.ui_dialog_title img{
+	cursor: pointer;
+}
+#login_close{
 	position:absolute;
 	top: 13px;
 	right: 12px;
 }
-.ui-dialog-content{
+.ui_dialog_content{
 	margin-left: 40px;
 }
-.ui-dialog-l40{
-	padding-top: 15px;
+.ui_dialog_title{
+	margin-bottom: 15px;
 }
-.ui-dialog-input{
+.ui_dialog_input{
 		width: 295px;height: 45px;
 		border: 1px solid #dfdfdf;
 		font-size: 16px;
 		text-indent: 12px;
 		background-color: #fafafa;
-		
+		margin-bottom: 15px;
 }
-#login-submit{
-	margin-top: 30px;
+#login_submit{
+	margin-top: 15px;
 	font-size: 16px;
-
 	color: #fff;
 	width: 293px;
 	height: 46px;
-	background-image: url(../image/login-btn.png);
+	background-image: url(../image/login_btn.png);
 
 }

@@ -1,5 +1,30 @@
 
-
+function getElementsByClassName(element, names) {
+            if (element.getElementsByClassName) {
+                return element.getElementsByClassName(names);
+            } else {
+                var elements = element.getElementsByTagName('*');
+                var result = [];
+                var element,
+                    classNameStr,
+                    flag;
+                names = names.split(' ');
+                for (var i = 0; element = elements[i]; i++) {
+                    classNameStr = ' ' + element.className + ' ';
+                    flag = true;
+                    for (var j = 0, name; name = names[j]; j++) {
+                        if (classNameStr.indexOf(' ' + name + '') == -1) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        result.push(element);
+                    }
+                }
+                return result;
+            }
+        }
 
 //添加cookie
 function setCookie (name, value, expires, path, domain, secure) {
@@ -51,7 +76,7 @@ tip_click.onclick=function(){
         setCookie('tip_click','1',date);
     }
 }
-var tip=document.getElementsByClassName('tip')[0];
+var tip=getElementsByClassName(document,'tip')[0];
 window.onload=function(){
       if(getcookie()['tip_click']==1){
         tip.style.display='none';
@@ -73,8 +98,8 @@ var $ = function (id) {
 var imgArr=['image/banner1.jpg','image/banner2.jpg','image/banner3.jpg'];
 var imgUrl=['http://open.163.com','http://study.163.com','http://www.icourse163.org'];
 var imgCount=0;
-// var mSlide=document.getElementsByClassName("m-slide")[0];
-var mSlide=document.getElementById("j-side");
+// var mSlide=document.getElementsByClassName("m_slide")[0];
+var mSlide=document.getElementById("j_side");
 var date = new Date("December 31, 2020");
 //切换动画
 var animation=function(ele,from,to){
@@ -100,21 +125,21 @@ var animation=function(ele,from,to){
 
 var imgItem=mSlide.getElementsByTagName('img')[0];
 var autoSlide=1439196225318;
-var autoSlideSrc='auto-id-';
+var autoSlideSrc='auto_id_';
 //创建img轮播图
 function addimg (){
     if(imgCount==imgArr.length)
     {
         imgCount=0;
     }
-    $('auto-id-1439196225318').className="";
-    $('auto-id-1439196225319').className="";
-    $('auto-id-1439196225320').className="";
+    $('auto_id_1439196225318').className="";
+    $('auto_id_1439196225319').className="";
+    $('auto_id_1439196225320').className="";
 
     var img=document.createElement('img');
     img.src=imgArr[imgCount];
-    img.style.height='460px';
-    img.style.width='1616px';
+    // img.style.height='460px';
+    // img.style.width='1616px';
     mSlide.href=imgUrl[imgCount];
     mSlide.appendChild(img);
     autoSlide+=imgCount;
@@ -123,7 +148,7 @@ function addimg (){
     $(autoSlideSrc).className="js-selected";
     imgCount++
     autoSlide=1439196225318;
-    autoSlideSrc='auto-id-';
+    autoSlideSrc='auto_id_';
 }
 addimg ();
 //触发器，执行轮播图动态切换
@@ -156,7 +181,7 @@ function stop() {
             mSlide.onmouseout = play;
 
 //轮播图切换按钮事件
-$('auto-id-1439196225318').onclick=function(){
+$('auto_id_1439196225318').onclick=function(){
     isHover=true;
     imgCount=0;
     if(mSlide.getElementsByTagName('img')[0])
@@ -173,7 +198,7 @@ $('auto-id-1439196225318').onclick=function(){
 
     },5000);
 }
-$('auto-id-1439196225319').onclick=function(){
+$('auto_id_1439196225319').onclick=function(){
     isHover=true;
     imgCount=1;
     if(mSlide.getElementsByTagName('img')[0])
@@ -189,7 +214,7 @@ $('auto-id-1439196225319').onclick=function(){
         sHover=flase;
     },5000);
 }
-$('auto-id-1439196225320').onclick=function(){
+$('auto_id_1439196225320').onclick=function(){
     isHover=true;
     imgCount=2;
     if(mSlide.getElementsByTagName('img')[0])
@@ -207,18 +232,18 @@ $('auto-id-1439196225320').onclick=function(){
 };
 
 
-$('video-close').onclick=function(){
+$('video_close').onclick=function(){
     $('zhezhao').style.display='none';
     $('video').style.display='none';
-    $('video-play').pause();
+    $('video_play').pause();
 };
 $('ontents_right_img').onclick=function(){
     $('zhezhao').style.display='block';
     $('video').style.display='block';
-    $('video-play').play();
+    $('video_play').play();
 };
 
-$('login-close').onclick=function(){
+$('login_close').onclick=function(){
     $('zhezhao').style.display='none';
     $('login').style.display='none';
 };
@@ -310,8 +335,8 @@ function pageData (responseText) {
         if(value.substring(value.length-1)=='"'){
             value=value.substring(0,value.length-1);
         }
-        if(name=='description'&&value.length>70){
-            value=value.substring(0,70)+'...';
+        if(name=='description'&&value.length>40){
+            value=value.substring(0,40)+'...';
         }
 
         if(name=='list'){
@@ -383,7 +408,7 @@ function pageCallBack(responseText){
        
         for(;j<5;j++){
 
-            txt+='<li class="contents_ul_li"><img src='+data[i]['middlePhotoUrl']+' alt=""><p>'+data[i]['name']+'</p><span>'+data[i].provider+'</span><div class="contents_ul_fc">'+data[i].learnerCount+'</div><div class="contents_ul_mon">￥'+data[i].price+'</div><div class="contents_ul_float" style="display:none;"><img src='+data[i]['middlePhotoUrl']+' alt=""><h2>'+data[i]['name']+'</h2><p id="contents_ul_float_fc">'+data[i]['learnerCount']+'人在学</p><span>发布者：'+data[i]['provider']+'</span><span>分类： '+data[i]['categoryName']+'</span><div class="contents_ul_float_foot" >'+data[i]['description']+'</div></div></li>';
+            txt+='<li class="contents_ul_li"><img class="contents_ul_li_img" src='+data[i]['middlePhotoUrl']+' alt=""><p>'+data[i]['name']+'</p><span>'+data[i].provider+'</span><div class="contents_ul_fc">'+data[i].learnerCount+'</div><div class="contents_ul_mon">￥'+data[i].price+'</div><div class="contents_ul_float" style="display:none;"><img class="contents_ul_li_img0" src='+data[i]['middlePhotoUrl']+' alt=""><h2>'+data[i]['name']+'</h2><p id="contents_ul_float_fc">'+data[i]['learnerCount']+'人在学</p><span>发布者：'+data[i]['provider']+'</span><span>分类： '+data[i]['categoryName']+'</span><div class="contents_ul_float_foot" >'+data[i]['description']+'</div></div></li>';
             i++
         }
         j=1;
@@ -395,14 +420,15 @@ function pageCallBack(responseText){
 
 }
 function pageFloat(){
-    var page=document.getElementsByClassName('contents_ul_li');
+    var page=getElementsByClassName(document,'contents_ul_li_img');
+    var page0=getElementsByClassName(document,'contents_ul_float');
      for(var i=0;i<20;i++){
         page[i].onmouseover=function(){
-            this.getElementsByClassName('contents_ul_float')[0].style.display='block';
+            getElementsByClassName(this.parentNode,'contents_ul_float')[0].style.display='block';
 
         };
-        page[i].onmouseout=function(){
-            this.getElementsByClassName('contents_ul_float')[0].style.display='none';
+        page0[i].onmouseleave=function(){
+            this.style.display='none';
 
         };
     }
@@ -421,7 +447,7 @@ function get(url,options,callback){
         }
     }
     xhr.open('get',url+"?"+serialize(options),true);
-    // xhr.setRequestHeader(header,value);//Content-Type  multipart/form-data
+    // xhr.setRequestHeader(header,value);//Content-Type  multipart/form_data
     xhr.send(null);
 }
 
@@ -470,7 +496,7 @@ $('head_follow_link').onclick=function(){
         }
 }
 
-$('login-submit').onclick=function(){
+$('login_submit').onclick=function(){
     var name=hex_md5($("username").value);
     var pwd=hex_md5($("password").value);
     var loginOptions={userName:name,password:pwd};
@@ -482,7 +508,7 @@ $('login-submit').onclick=function(){
 // var txt='<ul class="contents_ul"><li><img src="image/book01.png" alt=""><p>混音全揭秘 舞曲实战篇 揭秘音乐揭秘混音全揭秘 舞曲实战篇 揭秘音乐揭秘</p><span>音频帮</span><div class="contents_ul_fc">510</div><div class="contents_ul_mon">￥800.00</div></li><li><img src="image/book02.png" alt=""><p>混音全揭秘 舞曲实战篇 揭秘音乐揭秘混音全揭秘 舞曲实战篇 揭秘音乐揭秘</p><span>音频帮</span><div class="contents_ul_fc">510</div><div class="contents_ul_mon">￥800.00</div> </li> <li><img src="image/book03.png" alt=""><p>混音全揭秘 舞曲实战篇 揭秘音乐揭秘混音全揭秘 舞曲实战篇 揭秘音乐揭秘</p><span>音频帮</span><div class="contents_ul_fc">510</div><div class="contents_ul_mon">￥800.00</div></li><li><img src="image/book01.png" alt=""><p>混音全揭秘 舞曲实战篇 揭秘音乐揭秘混音全揭秘 舞曲实战篇 揭秘音乐揭秘</p><span>音频帮</span><div class="contents_ul_fc">510</div><div class="contents_ul_mon">￥800.00</div></li></ul>';
 
 //页码切换JS
-var pageCount=document.getElementsByClassName('contents_pages')[0].getElementsByTagName('a');
+var pageCount=getElementsByClassName(document,'contents_pages')[0].getElementsByTagName('a');
 
 var pages=function(){ 
     for(var i=0;i<8;i++)
@@ -501,8 +527,8 @@ var pages=function(){
 
         };
 }
-var pagePrev=document.getElementsByClassName('page-prev')[0];
-var pageNext=document.getElementsByClassName('page-next')[0];
+var pagePrev=getElementsByClassName(document,'page-prev')[0];
+var pageNext=getElementsByClassName(document,'page-next')[0];
 
 pagePrev.onclick=function(){
     var no=1;
@@ -610,4 +636,4 @@ function startmarquee(speed, delay) {
     }
 
     /**startmarquee(一次滚动高度,速度,停留时间);**/　　
-        startmarquee(20, 1000);
+        startmarquee(20, 5000);
